@@ -1,23 +1,49 @@
+<!-- Donate Modal (Hidden by Default) -->
 <div id="donateModal" class="modal">
+
+  <!-- White Popup Box -->
   <div class="modal-content">
-    <span class="close" onclick="closeDonateModal()">×</span>
+
+    <!-- Close Button -->
+    <span class="close-btn" onclick="closeDonateModal()">×</span>
 
     <h2>Donate Food</h2>
 
-    <form action="/donate" method="POST" enctype="multipart/form-data">
-      <input type="text" name="title" placeholder="Food title" required />
-      <textarea name="description" placeholder="Description"></textarea>
+    <!-- Donation Form (UI Only for Now) -->
+    <form>
 
-      <select name="category">
-        <option>Vegetables</option>
-        <option>Cooked Food</option>
-        <option>Bakery</option>
-      </select>
+      <input
+        type="text"
+        placeholder="Food Name"
+        required
+      />
 
-      <input type="text" name="quantity" placeholder="e.g. 5kg or 10 servings" />
-      <input type="text" name="location" placeholder="Location" />
+      <textarea
+        placeholder="Description"
+      ></textarea>
 
-      <button type="submit">Post Donation</button>
+      <input
+        type="text"
+        placeholder="Quantity (e.g. 5kg / 10 plates)"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Location"
+        required
+      />
+
+      <input
+        type="datetime-local"
+        required
+      />
+
+      <button type="submit">
+        Post Donation
+      </button>
+
     </form>
+
   </div>
 </div>
