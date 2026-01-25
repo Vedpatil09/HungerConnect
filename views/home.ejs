@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include("partials/navbar") %>
+
+  <!-- Page Content -->
+  <main class="container">
+
+    <h2 class="page-title">Available Food Donations</h2>
+
+    <div class="food-grid">
+
+      <% foods.forEach(food => { %>
+        <%- include("partials/foodCard", { food }) %>
+      <% }) %>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

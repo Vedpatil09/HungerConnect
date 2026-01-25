@@ -61,5 +61,7 @@ router.post("/login", async (req, res) => {
   res.redirect("/dashboard");
 });
 
-
+router.get("/select-role", (req, res) => {
+  res.render("selectRole");
+});
 module.exports = router;

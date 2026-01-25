@@ -1,0 +1,32 @@
+<div class="food-card">
+
+  <!-- Food Image -->
+  <img src="<%= food.image %>" class="food-img" />
+
+  <!-- Card Content -->
+  <div class="food-info">
+
+    <h3><%= food.title %></h3>
+
+    <p class="desc">
+      <%= food.description %>
+    </p>
+
+    <div class="meta">
+      📍 <%= food.location %> |
+      ⚖️ <%= food.quantity %>
+    </div>
+
+    <div class="footer">
+      <span class="status <%= food.status %>">
+        <%= food.status %>
+      </span>
+
+      <span class="time">
+        ⏰ <%= food.time %>
+      </span>
+    </div>
+
+  </div>
+
+</div>

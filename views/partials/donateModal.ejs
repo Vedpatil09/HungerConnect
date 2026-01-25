@@ -1,0 +1,23 @@
+<div id="donateModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeDonateModal()">×</span>
+
+    <h2>Donate Food</h2>
+
+    <form action="/donate" method="POST" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="Food title" required />
+      <textarea name="description" placeholder="Description"></textarea>
+
+      <select name="category">
+        <option>Vegetables</option>
+        <option>Cooked Food</option>
+        <option>Bakery</option>
+      </select>
+
+      <input type="text" name="quantity" placeholder="e.g. 5kg or 10 servings" />
+      <input type="text" name="location" placeholder="Location" />
+
+      <button type="submit">Post Donation</button>
+    </form>
+  </div>
+</div>
