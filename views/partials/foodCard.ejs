@@ -20,6 +20,12 @@
     <div class="footer">
       <span class="status <%= food.status %>">
         <%= food.status %>
+        <% if (food.status === "active") { %>
+  <form action="/book/<%= food._id %>" method="POST">
+    <button class="book-btn">Book</button>
+  </form>
+<% } %>
+
       </span>
 
       <span class="time">

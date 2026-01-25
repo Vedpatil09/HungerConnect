@@ -300,3 +300,11 @@ body.auth-body {
     opacity: 1;
   }
 }
+.book-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

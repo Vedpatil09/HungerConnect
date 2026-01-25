@@ -10,40 +10,46 @@
     <h2>Donate Food</h2>
 
     <!-- Donation Form (UI Only for Now) -->
-    <form>
+    <form action="/donate" method="POST">
 
-      <input
-        type="text"
-        placeholder="Food Name"
-        required
-      />
+  <input
+    type="text"
+    name="title"
+    placeholder="Food Name"
+    required
+  />
 
-      <textarea
-        placeholder="Description"
-      ></textarea>
+  <textarea
+    name="description"
+    placeholder="Description"
+  ></textarea>
 
-      <input
-        type="text"
-        placeholder="Quantity (e.g. 5kg / 10 plates)"
-        required
-      />
+  <input
+    type="text"
+    name="quantity"
+    placeholder="Quantity (e.g. 5kg / 10 plates)"
+    required
+  />
 
-      <input
-        type="text"
-        placeholder="Location"
-        required
-      />
+  <input
+    type="text"
+    name="location"
+    placeholder="Location"
+    required
+  />
 
-      <input
-        type="datetime-local"
-        required
-      />
+  <input
+    type="datetime-local"
+    name="expiry"
+    required
+  />
 
-      <button type="submit">
-        Post Donation
-      </button>
+  <button type="submit">
+    Post Donation
+  </button>
 
-    </form>
+</form>
+
 
   </div>
 </div>

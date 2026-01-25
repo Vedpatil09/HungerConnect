@@ -1,0 +1,28 @@
+const jwt = require("jsonwebtoken");
+
+module.exports = function (req, res, next) {
+
+  const token = req.cookies.token;
+
+  // If no token → force login
+  if (!token) {
+    return res.redirect("/");
+  }
+
+  try {
+
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Attach user info to request
+    req.userId = decoded.id;
+    req.userRoles = decoded.roles;
+
+    next(); // Allow access
+
+  } catch (err) {
+
+    res.redirect("/");
+
+  }
+};
