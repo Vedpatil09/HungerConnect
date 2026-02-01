@@ -21,14 +21,19 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/", require("./routes/auth"));
 app.use("/", require("./routes/food"));
 app.use("/", require("./routes/booking"));
+app.use("/", require("./routes/myDonations"));
+const auth = require("./utils/authMiddleware");
 
 
-app.get("/home", async (req, res) => {
+app.get("/home", auth, async (req, res) => {
 
-  const foods = await Food.find()
-    .sort({ createdAt: -1 });
+  // Get all food except my own
+  const foods = await Food.find({
+    donor: { $ne: req.userId }
+  }).sort({ createdAt: -1 });
 
   res.render("home", { foods });
+
 });
 
 

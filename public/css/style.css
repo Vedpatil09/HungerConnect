@@ -1,5 +1,5 @@
 body.auth-body {
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  background: linear-gradient(135deg, #555454, #ffffff);
   font-family: Arial, sans-serif;
   height: 100vh;
   display: flex;
@@ -9,12 +9,12 @@ body.auth-body {
 }
 
 .auth-card {
-  background: #111;
+  background: #adaaaa;
   padding: 30px;
   border-radius: 12px;
   width: 350px;
   text-align: center;
-  box-shadow: 0 0 20px rgb(51, 191, 199, 0.2);
+  box-shadow: 0 0 50px rgba(0, 239, 251, 0.2);
 }
 
 .auth-card h2 {
@@ -25,7 +25,7 @@ body.auth-body {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  background: #222;
+  background: #575454;
   border: none;
   color: white;
   border-radius: 6px;
@@ -34,7 +34,7 @@ body.auth-body {
 .auth-card button {
   width: 100%;
   padding: 12px;
-  background: #33BFC7;
+  background: #00effb;
   border: none;
   border-radius: 6px;
   font-weight: bold;
@@ -46,7 +46,7 @@ body.auth-body {
 }
 
 .auth-card a {
-  color: #33BFC7;
+  color: #37d6df;
   text-decoration: none;
 }
 .error-popup {
@@ -307,4 +307,39 @@ body.auth-body {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+.modal-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.food-card {
+  cursor: pointer;
+}
+.map-btn {
+  display: inline-block;
+
+  margin-top: 8px;
+  padding: 6px 12px;
+
+  background: #2563eb;
+  color: white;
+
+  border-radius: 5px;
+
+  text-decoration: none;
+  font-size: 14px;
+}
+.ai-box {
+  background: #ecfeff;
+  border-left: 4px solid #06b6d4;
+
+  padding: 10px;
+  margin: 15px 0;
+
+  font-size: 14px;
+
+  border-radius: 6px;
 }

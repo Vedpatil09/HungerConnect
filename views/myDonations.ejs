@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>FoodShare</title>
-
+  <title>My Donations</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <%- include("partials/navbar") %>
+<%- include("partials/navbar") %>
 
-  <!-- Page Content -->
-  <main class="container">
+<div class="container">
 
-    <h2 class="page-title">Available Food Donations</h2>
+  <h2 class="page-title">My Donations</h2>
+
+  <% if (foods.length === 0) { %>
+
+    <p>You have not added any donations yet.</p>
+
+  <% } else { %>
 
     <div class="food-grid">
 
       <% foods.forEach(food => { %>
+
         <%- include("partials/foodCard", { food }) %>
+
       <% }) %>
 
     </div>
 
-  </main>
-<!-- Donate Modal -->
-<%- include("partials/donateModal") %>
+  <% } %>
 
+</div>
+
+<!-- Food Details Modal -->
 <%- include("partials/foodDetailsModal") %>
+
+<!-- Modal JS -->
 <script src="/js/modal.js"></script>
 
 </body>

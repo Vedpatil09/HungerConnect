@@ -12,26 +12,20 @@
 
   <h2>My Bookings</h2>
 
-  <% bookings.forEach(b => { %>
+  <div class="food-grid">
 
-    <div class="food-card">
+    <% bookings.forEach(b => { %>
 
-      <img src="<%= b.food.image %>" class="food-img" />
+      <%- include("partials/foodCard", { food: b.food }) %>
 
-      <div class="food-info">
+    <% }) %>
 
-        <h3><%= b.food.title %></h3>
-
-        <p>Status: <%= b.status %></p>
-        <p>Location: <%= b.food.location %></p>
-
-      </div>
-
-    </div>
-
-  <% }) %>
+  </div>
 
 </div>
+
+<%- include("partials/foodDetailsModal") %>
+<script src="/js/modal.js"></script>
 
 </body>
 </html>

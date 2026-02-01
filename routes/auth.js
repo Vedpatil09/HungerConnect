@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
   );
 
   res.cookie("token", token, { httpOnly: true });
-  res.redirect("/dashboard");
+  res.redirect("/home");
 });
 
 router.get("/select-role", (req, res) => {

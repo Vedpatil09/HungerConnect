@@ -1,0 +1,41 @@
+<!-- Food Details Modal -->
+<div id="foodModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeFoodModal()">×</span>
+
+    <img id="modalImage" class="modal-img" />
+
+    <h2 id="modalTitle"></h2>
+
+    <p id="modalDesc"></p>
+    <div class="ai-box">
+
+  🤖 <b>AI Recommendation</b>
+
+  <p id="modalAI"></p>
+
+</div>
+
+    <p><b>Quantity:</b> <span id="modalQty"></span></p>
+    <p><b>Location:</b> <span id="modalLoc"></span></p>
+    <p><b>Food Expiry:</b> <span id="modalExp"></span></p>
+    <a
+  id="mapLink"
+  target="_blank"
+  class="map-btn"
+>
+  🗺️ Open in Google Maps
+</a>
+
+    <!-- Booking Form -->
+    <form id="bookForm" method="POST">
+      <button type="submit" class="book-btn">
+        Confirm Booking
+      </button>
+    </form>
+
+  </div>
+
+</div>

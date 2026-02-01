@@ -31,7 +31,7 @@ const foodSchema = new mongoose.Schema({
 
   status: {
     type: String,
-    default: "active" // active, booked, collected
+    default: "active"
   },
 
   donor: {
@@ -39,10 +39,25 @@ const foodSchema = new mongoose.Schema({
     ref: "User"
   },
 
+  latitude: {
+    type: Number,
+    default: null
+  },
+
+  longitude: {
+    type: Number,
+    default: null
+  },
+
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  aiSuggestion: {
+  type: String,
+  default: ""
+}
+
 
 });
 

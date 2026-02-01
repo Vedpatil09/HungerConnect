@@ -1,4 +1,17 @@
-<div class="food-card">
+<div
+  class="food-card"
+
+  data-id="<%= food._id %>"
+  data-title="<%- food.title %>"
+  data-desc="<%- food.description %>"
+  data-qty="<%= food.quantity %>"
+  data-loc="<%- food.location %>"
+  data-exp="<%= food.expiry %>"
+  data-img="<%= food.image %>"
+  data-lat="<%= food.latitude || '' %>"
+  data-lng="<%= food.longitude || '' %>"
+  data-ai="<%- food.aiSuggestion || '' %>"
+>
 
   <!-- Food Image -->
   <img src="<%= food.image %>" class="food-img" />
@@ -8,9 +21,7 @@
 
     <h3><%= food.title %></h3>
 
-    <p class="desc">
-      <%= food.description %>
-    </p>
+    <p class="desc"><%= food.description %></p>
 
     <div class="meta">
       📍 <%= food.location %> |
@@ -18,19 +29,15 @@
     </div>
 
     <div class="footer">
+
       <span class="status <%= food.status %>">
         <%= food.status %>
-        <% if (food.status === "active") { %>
-  <form action="/book/<%= food._id %>" method="POST">
-    <button class="book-btn">Book</button>
-  </form>
-<% } %>
-
       </span>
 
       <span class="time">
-        ⏰ <%= food.time %>
+        ⏰ <%= food.time || "Just now" %>
       </span>
+
     </div>
 
   </div>
