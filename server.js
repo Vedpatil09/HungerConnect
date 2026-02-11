@@ -23,6 +23,7 @@ app.use("/", require("./routes/food"));
 app.use("/", require("./routes/booking"));
 app.use("/", require("./routes/myDonations"));
 const auth = require("./utils/authMiddleware");
+app.use("/profile", require("./routes/profile"));
 
 
 app.get("/home", auth, async (req, res) => {

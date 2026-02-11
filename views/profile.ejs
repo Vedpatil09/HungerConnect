@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>My Profile</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<%- include("partials/navbar") %>
+
+
+<div class="container profile-container">
+
+
+  <h2 class="page-title">My Profile</h2>
+
+
+  <div class="profile-card">
+
+    <h3>User Information</h3>
+
+
+    <p>
+      <b>Name:</b> <%= user.name %>
+    </p>
+
+    <p>
+      <b>Email:</b> <%= user.email %>
+    </p>
+
+
+    <hr>
+
+
+    <h3>Activity</h3>
+
+    <p>
+      🍱 Donations: <b><%= donations %></b>
+    </p>
+
+    <p>
+      📦 Bookings: <b><%= bookings %></b>
+    </p>
+
+
+    <hr>
+
+
+    <div class="profile-actions">
+
+      <a href="/logout" class="logout-btn">
+        Logout
+      </a>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+</body>
+</html>

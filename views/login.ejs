@@ -2,28 +2,147 @@
 <html>
 <head>
   <title>Login</title>
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="auth-body">
-    
 
-<div class="auth-card">
-  <h2>Welcome Back</h2>
+  <div class="auth-card">
 
-  <% if (error) { %>
-    <div class="error-popup"><%= error %></div>
-  <% } %>
+    <h2>Welcome Back</h2>
 
-  <form action="/login" method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
+    <!-- Error Message -->
+    <div
+      id="errorBox"
+      class="error-popup"
+      style="display:none;"
+    ></div>
 
-    <button type="submit">Login</button>
-  </form>
 
-  <p>New here? <a href="/register">Create account</a></p>
-</div>
+    <!-- Login Box (NO FORM) -->
+    <div class="login-box">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        required
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required
+      >
+
+      <button id="loginBtn">
+        Login
+      </button>
+
+    </div>
+
+
+    <p>
+      New here?
+      <a href="/register">Create account</a>
+    </p>
+
+  </div>
+
+
+<!-- Login Script -->
+<script>
+
+console.log("Login JS Loaded");
+
+
+const btn = document.getElementById("loginBtn");
+const errorBox = document.getElementById("errorBox");
+
+
+// Login button click
+btn.addEventListener("click", async () => {
+
+  console.log("Login Clicked");
+
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value.trim();
+
+
+  // Validation
+  if (!email || !password) {
+
+    showError("Please fill all fields");
+
+    return;
+  }
+
+
+  try {
+
+    const res = await fetch("/login", {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      // IMPORTANT for cookies
+      credentials: "include",
+
+      body: JSON.stringify({
+        email,
+        password
+      })
+
+    });
+
+
+    const data = await res.json();
+
+    console.log("Server Response:", data);
+
+
+    // Success
+    if (data.success) {
+
+      window.location.href = "/home";
+
+    } else {
+
+      showError(data.error || "Login failed");
+
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+    showError("Server error");
+
+  }
+
+});
+
+
+
+// Show error
+function showError(msg) {
+
+  errorBox.innerText = msg;
+
+  errorBox.style.display = "block";
+
+}
+
+</script>
 
 </body>
 </html>

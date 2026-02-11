@@ -3,65 +3,142 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+
+// Create Router
 const router = express.Router();
 
-// Show register page
+
+// =======================
+// SHOW LOGIN PAGE
+// =======================
+router.get("/", (req, res) => {
+  res.render("login");
+});
+
+
+// =======================
+// SHOW REGISTER PAGE
+// =======================
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
-// Show login page
-router.get("/", (req, res) => {
-  // Pass the error message from the URL to the EJS page
-  res.render("login", { error: req.query.error });
+
+// =======================
+// HANDLE REGISTER
+// =======================
+router.post("/register", async (req, res) => {
+
+  try {
+
+    const { name, email, password } = req.body;
+
+
+    // Check if user exists
+    const exist = await User.findOne({ email });
+
+    if (exist) {
+      return res.redirect("/?error=User already exists");
+    }
+
+
+    // Hash password
+    const hashed = await bcrypt.hash(password, 10);
+
+
+    await User.create({
+      name,
+      email,
+      password: hashed
+    });
+
+
+    res.redirect("/");
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.redirect("/?error=Register failed");
+
+  }
+
 });
 
 
-// Handle Register
-router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+// =======================
+// HANDLE LOGIN (JWT + COOKIE)
+// =======================
+router.post("/login", async (req, res) => {
 
-  // Hash password for security
-  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
 
-  // Save user in DB
-  await User.create({
-    name,
-    email,
-    password: hashedPassword
-  });
+    const { email, password } = req.body;
+
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        error: "User not found"
+      });
+    }
+
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res.json({
+        success: false,
+        error: "Wrong password"
+      });
+    }
+
+
+    // Create token
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+
+    // Save token in cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "lax"
+    });
+
+
+    res.json({ success: true });
+
+
+  } catch (err) {
+
+    console.log("Login Error:", err);
+
+    res.status(500).json({
+      success: false,
+      error: "Server error"
+    });
+
+  }
+
+});
+
+
+// =======================
+// LOGOUT
+// =======================
+router.get("/logout", (req, res) => {
+
+  res.clearCookie("token");
 
   res.redirect("/");
+
 });
 
-// Handle Login
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
-
-  // If user does not exist
-  if (!user) {
-    return res.redirect("/?error=User not found. Please Create Account First.");
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    return res.redirect("/?error=Wrong password.");
-  }
-
-  // JWT creation logic (same as before)
-  const token = jwt.sign(
-    { id: user._id, roles: user.roles },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
-
-  res.cookie("token", token, { httpOnly: true });
-  res.redirect("/home");
-});
-
-router.get("/select-role", (req, res) => {
-  res.render("selectRole");
-});
+// Export router
 module.exports = router;

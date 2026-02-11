@@ -1,28 +1,29 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = function (req, res, next) {
+module.exports = (req, res, next) => {
 
-  const token = req.cookies.token;
+  const token = req.cookies.token; // 👈 Read from cookie
 
-  // If no token → force login
+
   if (!token) {
     return res.redirect("/");
   }
 
+
   try {
 
-    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Attach user info to request
     req.userId = decoded.id;
-    req.userRoles = decoded.roles;
 
-    next(); // Allow access
+    next();
 
   } catch (err) {
 
-    res.redirect("/");
+    res.clearCookie("token");
+
+    return res.redirect("/");
 
   }
+
 };
