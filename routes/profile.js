@@ -9,7 +9,7 @@ const auth = require("../utils/authMiddleware");
 const router = express.Router();
 
 
-// =======================
+
 // PROFILE PAGE
 // =======================
 router.get("/", auth, async (req, res) => {
