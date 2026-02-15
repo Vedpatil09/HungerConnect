@@ -4,10 +4,12 @@ const auth = require("../utils/authMiddleware");
 const getAISuggestion = require("../utils/gemini");
 
 const router = express.Router();
+const upload = require("../utils/multer");
 
 
 // Handle Donate Form
-router.post("/donate", auth, async (req, res) => {
+router.post("/donate", auth, upload.single("image"), async (req, res) => {
+
 
   try {
 
@@ -21,7 +23,7 @@ router.post("/donate", auth, async (req, res) => {
       longitude
     } = req.body;
 
-
+ console.log("Uploaded file:", req.file);
     // Get AI recommendation from Gemini
     const aiText = await getAISuggestion({
       title,
@@ -44,7 +46,7 @@ router.post("/donate", auth, async (req, res) => {
       longitude,
 
       donor: req.userId,
-
+      image: req.file ? req.file.path : undefined,
       aiSuggestion: aiText
 
     });

@@ -26,7 +26,7 @@ const foodSchema = new mongoose.Schema({
 
   image: {
     type: String,
-    default: "https://source.unsplash.com/400x300/?food"
+    default: "https://via.placeholder.com/400x300?text=No+Image"
   },
 
   status: {
